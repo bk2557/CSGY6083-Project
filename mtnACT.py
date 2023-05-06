@@ -3,9 +3,8 @@ def mainMENU():
     print('''
     1. Activity Management
     2. Reports
-    3. New Users
-    4. Admin
-    5. Quit
+    3. Updates
+    4. Quit
     ''')
     while True:
         try:
@@ -17,12 +16,9 @@ def mainMENU():
                 reportMENU()
                 break
             elif optionNum == 3:
-                NEWuserMENU()
-                break
-            elif optionNum == 4:
                 adminMENU()
                 break
-            elif optionNum == 5:
+            elif optionNum == 4:
                 break
             else:
                 print("Enter a valid choice between 1 and 4.")
@@ -132,29 +128,29 @@ def reportMENU():
     exit
 
 #user management
-def NEWuserMENU():
-    print('''
-    1. Self Register
-    2. Back
-    3. Quit
-    ''')
-    while True:
-        try:
-            optionNum = int(input("Enter Choice: "))
-            if optionNum == 1:
-                addUSER()
-                break
-            elif optionNum == 2:
-                mainMENU()
-                break
-            elif optionNum == 3:
-                break
-            else:
-                print("Enter a valid choice between 1 and 3.")
-                mainMENU()
-        except ValueError:
-            print("Invalid choice. Enter a choice between 1 and 3.")
-    exit
+# def NEWuserMENU():
+    #    print('''
+    #    1. Self Register
+    #    2. Back
+    #    3. Quit
+    #    ''')
+    #    while True:
+    #        try:
+    #            optionNum = int(input("Enter Choice: "))
+    #       if optionNum == 1:
+    #           addUser()
+    #           break
+    #       elif optionNum == 2:
+    #           mainMENU()
+    #           break
+    #       elif optionNum == 3:
+    #            break
+     #       else:
+     #           print("Enter a valid choice between 1 and 3.")
+    #            mainMENU()
+    #    except ValueError:
+    #        print("Invalid choice. Enter a choice between 1 and 3.")
+    #exit
 
 #admin management
 def adminMENU():
@@ -166,7 +162,8 @@ def adminMENU():
     5. Route Type
     6. Terrain Type
     7. User
-    8. Quit
+    8. Back
+    9. Quit
     ''')
     while True:
         try:
@@ -193,6 +190,9 @@ def adminMENU():
                 userMENU()
                 break
             elif optionNum == 8:
+                mainMENU()
+                break
+            elif optionNum == 9:
                 break
             else:
                 print("Enter a valid choice between 1 and 5.")
@@ -575,9 +575,6 @@ def viewACT():
                 select_userINFO = ("SELECT idUser, FirstName, LastName FROM mydb.User")
                 with connection.cursor() as cursor:
                     cursor.execute(select_userINFO)
-                    # for row in cursor.fetchall():
-                    #    print(row)
-                    # connection.commit()
                     results = cursor.fetchall()
                     field_names = [i[0] for i in cursor.description]
                     print(tabulate(results, headers=field_names, tablefmt='psql'))
@@ -588,10 +585,6 @@ def viewACT():
                 with connection.cursor() as cursor:
                     cursor.execute(select_by_user)
                     result = cursor.fetchall()
-                    # for row in result:
-                    #    print(row)
-                    # connection.commit()
-                    # result = cursor.fetchall()
                     field_names = [i[0] for i in cursor.description]
                     print(tabulate(result, headers=field_names, tablefmt='psql'))
 
@@ -806,7 +799,7 @@ def editACT():
                 break
             # back
             elif optionNum == 3:
-                mainMENU()
+                actMENU()
                 break
             # quit
             elif optionNum == 4:
@@ -904,7 +897,7 @@ def deleteACT():
                 break
             #back
             elif optionNum == 3:
-                mainMENU()
+                actMENU()
                 break
             #quit
             elif optionNum == 4:
@@ -963,7 +956,7 @@ def viewACTtype():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                actTypeMENU()
                 break
 
             #quit
@@ -1029,7 +1022,7 @@ def editACTtype():
 
             # back
             elif optionNum == 2:
-                mainMENU()
+                actTypeMENU()
                 break
             # quit
             elif optionNum == 3:
@@ -1089,7 +1082,7 @@ def deleteACTtype():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                actTypeMENU()
                 break
             #quit
             elif optionNum == 3:
@@ -1146,7 +1139,7 @@ def viewDiff():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                diffMENU()
                 break
 
             #quit
@@ -1212,7 +1205,7 @@ def editDiff():
 
             # back
             elif optionNum == 2:
-                mainMENU()
+                diffMENU()
                 break
             # quit
             elif optionNum == 3:
@@ -1272,7 +1265,7 @@ def deleteDiff():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                diffMENU()
                 break
             #quit
             elif optionNum == 3:
@@ -1329,7 +1322,7 @@ def viewRegion():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                regionMENU()
                 break
 
             #quit
@@ -1395,7 +1388,7 @@ def editRegion():
 
             # back
             elif optionNum == 2:
-                mainMENU()
+                regionMENU()
                 break
             # quit
             elif optionNum == 3:
@@ -1456,7 +1449,7 @@ def deleteRegion():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                regionMENU()
                 break
             #quit
             elif optionNum == 3:
@@ -1513,7 +1506,7 @@ def viewRouteType():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                routeTypeMENU()
                 break
 
             #quit
@@ -1579,7 +1572,7 @@ def editRouteType():
 
             # back
             elif optionNum == 2:
-                mainMENU()
+                routeTypeMENU()
                 break
             # quit
             elif optionNum == 3:
@@ -1640,7 +1633,7 @@ def deleteRouteType():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                routeTypeMENU()
                 break
             #quit
             elif optionNum == 3:
@@ -1697,7 +1690,7 @@ def viewTerrainType():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                terrainTypeMENU()
                 break
 
             #quit
@@ -1763,7 +1756,7 @@ def editTerrainType():
 
             # back
             elif optionNum == 2:
-                mainMENU()
+                terrainTypeMENU()
                 break
             # quit
             elif optionNum == 3:
@@ -1824,7 +1817,7 @@ def deleteTerrainType():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                terrainTypeMENU()
                 break
             #quit
             elif optionNum == 3:
@@ -1903,7 +1896,7 @@ def viewAddresses():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                addressMENU()
                 break
 
             #quit
@@ -1986,7 +1979,7 @@ def editAddresses():
 
             # back
             elif optionNum == 2:
-                mainMENU()
+                addressMENU()
                 break
             # quit
             elif optionNum == 3:
@@ -2047,7 +2040,7 @@ def deleteAddresses():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                addressMENU()
                 break
             #quit
             elif optionNum == 3:
@@ -2113,7 +2106,7 @@ def viewUser():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                userMENU()
                 break
 
             #quit
@@ -2184,7 +2177,7 @@ def editUser():
 
             # back
             elif optionNum == 2:
-                mainMENU()
+                userMENU()
                 break
             # quit
             elif optionNum == 3:
@@ -2245,7 +2238,7 @@ def deleteUser():
 
             #back
             elif optionNum == 2:
-                mainMENU()
+                userMENU()
                 break
             #quit
             elif optionNum == 3:
@@ -2273,6 +2266,7 @@ try:
         user=input("Enter username: "),
         password=getpass("Enter password: "),
         database="mydb",
+        connect_timeout=28800
     ) as connection:
         print(connection)
         mainMENU()
